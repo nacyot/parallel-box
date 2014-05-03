@@ -1,0 +1,2 @@
+module DockerRegistriesHelper
+end
