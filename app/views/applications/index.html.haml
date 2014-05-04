@@ -1,0 +1,12 @@
+%div= link_to "Create Application", new_application_url
+
+%div Applicaiton List
+
+%table
+  %tr
+    %th Title
+    %th URL
+  - @apps.each do |app|
+    %tr
+      %td= link_to app.name, application_url(app)
+      %td= link_to app.url, app.url if app.url

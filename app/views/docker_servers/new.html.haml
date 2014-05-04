@@ -1,0 +1,11 @@
+%div Create Docker Server
+
+%div
+  = simple_form_for([:application, @server]) do |f|
+    = f.input :name
+    = f.input :host, as: 'url'
+    = f.input :port, as: 'integer'
+    = f.input :server_type, as: 'select', collection: ["stage", "deploy"]
+    = f.input :description
+    = f.submit
+
