@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: docker_servers
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  host        :string(255)
+#  port        :string(255)
+#  type        :string(255)
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class DockerServer < ActiveRecord::Base
-  has_many :applications, through: :applications_docker_servers
+  belongs_to :application
+
+  def box
+    @box || @box = DockerServerBox.new(url)
+  end
+
+  def url
+    host + ":" + port
+  end
 end
