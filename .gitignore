@@ -17,3 +17,5 @@
 .#*
 #*
 .env
+.tern-port
+/vendor/*

@@ -1,0 +1,44 @@
+%h1= @app.name
+%div= @app.url
+
+%h2 Docker Registry
+
+%div= @app.docker_registry.name
+%div= @app.docker_registry.host + ":" + @app.docker_registry.port
+
+%h2 All Image Tags
+
+- @tags.each do |tag|
+  %div= tag
+
+%h2 Stage Server
+%div= link_to "Add Stage Server", new_application_docker_server_url(@app, type: "stage")
+- @stage.each_with_index do |server, i|
+  %h3= (i+1).to_s + " : " + server.name
+  %div= server.host + ":" + server.port
+  %div= server.description
+  -# %div= server.box.containers
+  %table
+    %tr
+      %th tag
+      %th image
+      %th link
+      %th run
+    - server.box.app_containers(@tags).each do |tag|
+      %tr
+        %td= tag[:image_tag]
+        %td
+          - tag[:containers].each do |container| 
+            = container.info["Image"]
+        %td 
+          = "http://" unless tag[:containers].empty?
+        %td
+          = "stop" unless tag[:containers].empty?
+          = "run" if tag[:containers].empty?
+
+%h2 Deploy Server
+%div= link_to "Add Deploy Server", new_application_docker_server_url(@app, type: "deploy")
+- @deploy.each_with_index do |server, i|
+  %h3= (i+1).to_s + " : " + server.name
+  %div= server.host + ":" + server.port
+  %div= server.description

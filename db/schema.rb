@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503105636) do
+ActiveRecord::Schema.define(version: 20140504050141) do
 
   create_table "applications", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                       null: false
+    t.integer  "docker_registry_id"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "repository_name"
+    t.string   "repository_url"
+    t.string   "continuous_integration_url"
   end
 
   create_table "docker_registries", force: true do |t|
@@ -33,8 +37,9 @@ ActiveRecord::Schema.define(version: 20140503105636) do
     t.string   "name"
     t.string   "host"
     t.string   "port"
-    t.string   "type"
+    t.string   "server_type"
     t.string   "description"
+    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

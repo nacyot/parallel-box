@@ -1,0 +1,8 @@
+{
+  "name": "parallel-box",
+  "dependencies": {
+    "bootstrap": "~3",
+    "jquery": "*",
+    "font-awesome": "*"
+  }
+}

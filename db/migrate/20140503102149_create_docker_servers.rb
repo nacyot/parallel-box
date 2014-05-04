@@ -6,6 +6,7 @@ class CreateDockerServers < ActiveRecord::Migration
       t.string :port
       t.string :type
       t.string :description
+      t.integer :application_id
       
       t.timestamps
     end
