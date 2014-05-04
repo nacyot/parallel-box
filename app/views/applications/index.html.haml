@@ -6,7 +6,9 @@
   %tr
     %th Title
     %th URL
+    %th Registry
   - @apps.each do |app|
     %tr
       %td= link_to app.name, application_url(app)
       %td= link_to app.url, app.url if app.url
+      %td= link_to app.docker_registry.name, docker_registry_url(app.docker_registry)

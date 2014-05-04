@@ -1,0 +1,17 @@
+%h1= @registry.name
+%div= @registry.host + ":" + @registry.port
+
+%h2 Applications
+
+%table
+  %tr
+    %th Name
+    %th Url
+    %th Repository
+    %th CI
+  - @registry.applications.each do |app|
+    %tr
+      %td= app.name
+      %td= app.url
+      %td= app.repository_url
+      %td= app.continuous_integration_url
