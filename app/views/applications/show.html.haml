@@ -1,55 +1,47 @@
-%h1= @app.name
-%div= @app.url
+%h1
+  %i.fa.fa-square-o  
+  = @app.name
+  %span.heading-suffix
+    = link_to "Edit", edit_application_url(@app)
+
+= render partial: "applications/application", locals: {app: @app, non_title: true}
 
 %h2 Docker Registry
 
-%div= @app.docker_registry.name
-%div= @app.docker_registry.host + ":" + @app.docker_registry.port
+.rounded_box
+  %div= @app.docker_registry.name
+  %div= @app.docker_registry.host + ":" + @app.docker_registry.port
 
-%h2 All Image Tags
+%h2 All Image Tags from Docker Registry
 
-- @tags.each do |tag|
-  %div= tag
-
-%h2 Stage Server
-%div= link_to "Add Stage Server", new_docker_server_url(@app, type: "stage")
-- @stage.each_with_index do |server, i|
-  %h3= (i+1).to_s + " : " + server.name
-  %div= server.host + ":" + server.port
-  %div= server.description
-  -# %div= server.box.containers
+.rounded_box
   %table
     %tr
-      %th Tag
-      %th Container Status
-      %th Link
-      %th Control
-    - server.box.app_containers(@tags).each do |tag|
+      %th Image Tag
+      %th Image Hash
+    - @tags.each do |tag|
       %tr
-        %td= tag[:image_tag]
-        %td
-          - tag[:containers].each do |container| 
-            = container.short_id
-            = container.name
-            <br/>
-            %div{style: "border: 1px solid gray"}
-              - container.urls.each do |url|
-                = link_to url[0], url[0]
-                (Original_port: 
-                = url[1]
-                )
-                <br/>
-            <br/>
-        %td 
-          = "http://" unless tag[:containers].empty?
-        %td
-          = run_container_link(server, @app, tag[:image_tag]) if tag[:containers].empty?
-          - tag[:containers].each do |container|
-            = stop_container_link(server, container.short_id)
+        %td= tag[0]
+        %td= tag[1]
+      
 
-%h2 Deploy Server
-%div= link_to "Add Deploy Server", new_docker_server_url(@app, type: "deploy")
-- @deploy.each_with_index do |server, i|
-  %h3= (i+1).to_s + " : " + server.name
-  %div= server.host + ":" + server.port
-  %div= server.description
+%h2 
+  Stage Servers
+  %span.heading-suffix
+    = link_to "Add Stage Server", new_docker_server_url(@app, type: "stage")
+
+.rounded_box
+  - @stage.each do |server|
+    = render partial: "applications/stage_server", locals: {server: server, tags: @tags, app: @app}
+
+%h2 
+  Deploy Server
+  %span.heading-suffix
+    = link_to "Add Deploy Server", new_docker_server_url(@app, type: "deploy")
+
+.rounded_box
+  - @deploy.each do |server|
+    -#= render partial: "applications/deplay_server", locals: {server: server, tags: @tags, app: @app}
+    %h3= server.name
+    %div= server.host + ":" + server.port
+    %div= server.description
