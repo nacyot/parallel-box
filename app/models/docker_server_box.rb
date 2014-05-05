@@ -33,30 +33,19 @@ class DockerServerBox
     }
 
     start_options = {
-      "PortBindings" => {
-        "3000/tcp" => [{"HostIp"=>"0.0.0.0"}],
-        "9000/tcp" => [{"HostIp"=>"0.0.0.0"}]
-      },
+      "PortBindings" => create_port_mapping(ports)
     }
+
+    puts create_port_mapping(ports)
     
     DockerContainerBox.new(self, Container.create(create_options , connection).start(start_options))
   end
-
-  # def stop(container_id)
-  #  tap(&:stop).
-  #  delete(force: true)
-  # end
-  
-  # def image(hash)
-  #   Image.new connection, hash
-  # end
 
   def app_containers(tags)
     tags.map do |tag|
       image_tag, image_hash = tag[0], tag[1]
       
       result = containers.select do |box|
-        pp box
         box.container.info["Image"].match(/^(?<host>.*?)\/(?<app_name>nacyot-bbapi):(?<tag>.*?)$/) do |md|
           md["tag"] == image_tag
         end
@@ -75,4 +64,16 @@ class DockerServerBox
          :connection, :reset_connection!, :version, :info,
          :authenticate!, :validate_version!)
 
+  private
+  def create_port_mapping(ports)
+    # cport == container_port
+    # hport == host_port
+
+    ports.inject({}) do |sum, port|
+      host_info = {"HostIp" => "0.0.0.0"}
+      host_info = host_info.merge({"HostPort" => "#{port[:hport]}"}) if port[:hport]
+
+      sum.merge({"#{port[:cport]}/#{port[:method]}" => [host_info]})
+    end
+  end
 end

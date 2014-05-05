@@ -28,7 +28,9 @@ class DockerServersController < ApplicationController
 
   def run_container
     server = DockerServer.find(permitted_params[:docker_server_id])
-    server.box.start(permitted_params[:registry_host], permitted_params[:name], permitted_params[:tag])
+    ports = [{cport: "3000", method: "tcp"}, {cport: "9000", method: "tcp"}]
+    
+    server.box.start(permitted_params[:registry_host], permitted_params[:name], permitted_params[:tag], ports)
     redirect_to :back
   end
 
