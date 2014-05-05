@@ -22,7 +22,18 @@ class DockerServerBox
 
   def start(host, image, tag)
     image_name = host + "/" + image + ":" + tag
-    Container.create({'Image' => image_name}, connection).start
+    create_options = {
+      'Image' => image_name
+    }
+
+    start_options = {
+      "PortBindings" => {
+        "3000/tcp" => [{"HostIp"=>"0.0.0.0"}],
+        "9000/tcp" => [{"HostIp"=>"0.0.0.0"}]
+      },
+    }
+    
+    Container.create(create_options , connection).start(start_options)
   end
 
   def stop(container_id)
@@ -41,6 +52,7 @@ class DockerServerBox
       
       result = containers.select do |server|
         server.info["Image"].match(/^(?<host>.*?)\/(?<app_name>nacyot-bbapi):(?<tag>.*?)$/) do |md|
+          md["tag"] == image_tag
         end
       end
       
