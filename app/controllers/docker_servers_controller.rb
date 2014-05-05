@@ -34,7 +34,7 @@ class DockerServersController < ApplicationController
 
   def stop_container
     server = DockerServer.find(permitted_params[:docker_server_id])
-    server.box.stop(permitted_params[:container_id])
+    server.box.get_container(permitted_params[:container_id]).stop
     redirect_to :back
   end
 

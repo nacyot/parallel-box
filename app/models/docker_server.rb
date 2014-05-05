@@ -17,7 +17,7 @@ class DockerServer < ActiveRecord::Base
   belongs_to :application
 
   def box
-    @box || @box = DockerServerBox.new(url)
+    @box || @box = DockerServerBox.new(host, port)
   end
 
   def url
