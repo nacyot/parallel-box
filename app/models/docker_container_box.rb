@@ -1,0 +1,2 @@
+class DockerContainerBox
+end

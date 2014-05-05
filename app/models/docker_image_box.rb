@@ -1,0 +1,2 @@
+class DockerImageBox
+end
