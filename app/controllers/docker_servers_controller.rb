@@ -26,6 +26,18 @@ class DockerServersController < ApplicationController
   def destroy
   end
 
+  def run_container
+    server = DockerServer.find(permitted_params[:docker_server_id])
+    server.box.start(permitted_params[:registry_host], permitted_params[:name], permitted_params[:tag])
+    redirect_to :back
+  end
+
+  def stop_container
+    server = DockerServer.find(permitted_params[:docker_server_id])
+    server.box.stop(permitted_params[:container_id])
+    redirect_to :back
+  end
+
   private
   def docker_servers_params
     params.require(:docker_server).permit(:name, :host, :port, :server_type, :description,)
@@ -34,5 +46,10 @@ class DockerServersController < ApplicationController
   def application_id
     params.permit(:application_id)
   end
+
+  def permitted_params
+    params.permit(:docker_server_id, :name, :tag, :container_id, :registry_host)
+  end
+
 end
  

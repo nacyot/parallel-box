@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :docker_registries
-  resources :applications do
-    resources :docker_servers
+  resources :applications
+  resources :docker_servers do
+    get 'run_container' => 'docker_servers#run_container'
+    get 'stop_container' => 'docker_servers#stop_container'
   end
-
+    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

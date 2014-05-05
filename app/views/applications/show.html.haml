@@ -12,7 +12,7 @@
   %div= tag
 
 %h2 Stage Server
-%div= link_to "Add Stage Server", new_application_docker_server_url(@app, type: "stage")
+%div= link_to "Add Stage Server", new_docker_server_url(@app, type: "stage")
 - @stage.each_with_index do |server, i|
   %h3= (i+1).to_s + " : " + server.name
   %div= server.host + ":" + server.port
@@ -20,24 +20,25 @@
   -# %div= server.box.containers
   %table
     %tr
-      %th tag
-      %th image
-      %th link
-      %th run
+      %th Tag
+      %th Container Status
+      %th Link
+      %th Control
     - server.box.app_containers(@tags).each do |tag|
       %tr
         %td= tag[:image_tag]
         %td
           - tag[:containers].each do |container| 
-            = container.info["Image"]
+            = container.id[0..10]
         %td 
           = "http://" unless tag[:containers].empty?
         %td
-          = "stop" unless tag[:containers].empty?
-          = "run" if tag[:containers].empty?
+          = run_container_link(server, @app, tag[:image_tag]) if tag[:containers].empty?
+          - tag[:containers].each do |container|
+            = stop_container_link(server, container.id[0..10])
 
 %h2 Deploy Server
-%div= link_to "Add Deploy Server", new_application_docker_server_url(@app, type: "deploy")
+%div= link_to "Add Deploy Server", new_docker_server_url(@app, type: "deploy")
 - @deploy.each_with_index do |server, i|
   %h3= (i+1).to_s + " : " + server.name
   %div= server.host + ":" + server.port
