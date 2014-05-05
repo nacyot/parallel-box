@@ -1,0 +1,61 @@
+table{
+  width: 100%;
+
+  tr{
+    border-bottom: 1px solid gray;
+  }
+
+  th{
+    font-size: 1.2em; 
+    text-align: center;
+    padding: 15px 25px;
+  }
+  
+  td{
+    padding: 15px 25px;
+  }
+
+  td.title{
+    font-weight: bold;
+  }
+
+  td.url{
+  }
+
+  td.registry{
+  }
+}
+
+.heading-suffix{
+  font-size:0.5em
+}
+
+.rounded_box{
+  padding: 2em;
+  margin: 2em 0;
+  border: 1px solid gray;
+  
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 10px;
+}
+
+.form{
+  width: 100%;
+
+  input{
+    width: 100%;
+    margin-bottom: 1.2em;
+    padding: 0.1em 1em;
+    height: 2.5em;
+  }
+
+  input[type='submit']{
+    width: 25%;
+  }
+
+  legend{
+    
+  }
+}

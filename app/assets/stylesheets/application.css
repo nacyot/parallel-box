@@ -19,22 +19,3 @@
 body{
   margin-top: 60px;
 }
-
-table{
-  width: 100%;
-
-  tr{
-    border-bottom: 1px solid gray;
-  }
-
-  th{
-    text-align: center;
-    padding: 15px 25px;
-  }
-  
-  td{
-    padding: 15px 25px;
-  }
-
-}
-
