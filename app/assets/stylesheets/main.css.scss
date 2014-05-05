@@ -2,21 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table{
-  width: 90%;
+.index-timeline{
+  h2{
+  }
 
-  th{
-    text-align: center;
-    padding: 5px 15px;
+  hr{
+    color: gray;
+    background-color: gray;
+    height: 1px;
   }
   
-  tr{
-    border-bottom: 1px solid gray;
-  }
+  .event{
+    padding: 2em 3em;
+    margin: 2em 0px;
 
-  td{
-    padding: 5px 15px;
-  }
+    .time{
+    }
 
+    .application{
+    }
+    
+    .action{
+      font-size: 1.5em;
+    }
+
+    .user{
+    }
+  }
 }
 
+.index-applications{
+  ul{
+    list-style-type: none;
+    padding: 1.5em 0;
+    margin: 1.5em 0;
+  }
+
+  li{
+    border-bottom: 1px solid gray;
+    font-size: 1.2em;
+    padding: 0.8em 0.5em;
+    margin: 0;
+  }
+}

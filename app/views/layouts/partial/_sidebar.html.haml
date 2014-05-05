@@ -1,3 +1,10 @@
-= link_to "Applications", applications_url
-= link_to "Registries", "#"
+.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      %a.navbar-brand{href: "/"} Parallel Box
+    %ul.nav.navbar-nav
+      %li= link_to "Applications", applications_url
+      %li= link_to "Registries", docker_registries_url
+    %ul.nav.navbar-nav.navbar-right
+      %li= link_to "Login", "#"
 

@@ -1,8 +1,18 @@
-%div Create Application
+%h2
+  Create Application
+  %span.heading-suffix
+    = link_to "Back to applicaitons", applications_url
+    %i.fa.fa-undo
 
-%div
+%div.form.application_form.rounded_box{role: "form"}
   = simple_form_for(@app) do |f|
-    = f.input :name
-    = f.input :url
+    = f.input :name, label: "Application Name", placeholder: "Parallal Box"
+    = f.input :url, label: "Application URL", placeholder: "http://parallel-box.nacyot.com"
+    = f.input :repository_name, label: "Repository Name", placeholder: "nacyot/parallel-box"
+    = f.input :repository_url, label: "Repository URL", placeholder: "http://github.com/nacyot/parallel-box"
+    = f.input :continuous_integration_url, label: "Continuous Integration URL", placeholder: "http://jenkins.nacyot.com/parallel-box"
+    Select Docker Registry
+    <br/>
     = f.submit
 
+    

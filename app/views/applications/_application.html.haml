@@ -1,0 +1,17 @@
+.application.rounded_box
+  - unless non_title
+    %h3.title 
+      %i.fa.fa-square-o  
+      = link_to app.name, application_url(app)
+  .url
+    %strong URL :
+    = link_to app.url, app.url if app.url
+  .registry
+    %strong Registry : 
+    = link_to app.docker_registry.name, docker_registry_url(app.docker_registry)
+  .repository
+    %strong Repository :
+  .c
+    %strong CI :
+  .stages
+    %strong Stage Containers

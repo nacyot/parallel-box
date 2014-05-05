@@ -7,4 +7,10 @@
     = csrf_meta_tags
   %body
     = render "layouts/partial/sidebar"
-    = yield
+    .container-fluid
+      .row
+        .col-lg-1.col-md-1
+        .col-lg-10.col-md-10
+          = yield
+        .col-lg-1.col-md-1
+          
