@@ -20,8 +20,15 @@ class DockerServerBox
     Container.new connection, hash
   end
 
-  def start(image, tag)
-    Container.create({'Image' => image, 'tag' => tag}, connection).start
+  def start(host, image, tag)
+    image_name = host + "/" + image + ":" + tag
+    Container.create({'Image' => image_name}, connection).start
+  end
+
+  def stop(container_id)
+    Container.get(container_id, {}, connection).
+      tap(&:stop).
+      delete(force: true)
   end
   
   def image(hash)
@@ -34,9 +41,6 @@ class DockerServerBox
       
       result = containers.select do |server|
         server.info["Image"].match(/^(?<host>.*?)\/(?<app_name>nacyot-bbapi):(?<tag>.*?)$/) do |md|
-          puts "m:" + md["tag"]
-          puts "i:" + image_tag
-          md["tag"] == image_tag
         end
       end
       
@@ -52,4 +56,5 @@ class DockerServerBox
          :options=, :creds, :creds=, :logger, :logger=,
          :connection, :reset_connection!, :version, :info,
          :authenticate!, :validate_version!)
+
 end
