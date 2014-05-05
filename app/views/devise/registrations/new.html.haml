@@ -1,0 +1,11 @@
+%h2 Sign up
+
+.form.rounded_box
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+    = f.input :email, required: true, autofocus: true
+    = f.input :password, required: true
+    = f.input :password_confirmation, required: true
+    = f.button :submit, "Sign up"
+
+= render "devise/shared/links" 
