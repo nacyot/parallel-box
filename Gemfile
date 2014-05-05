@@ -18,6 +18,21 @@ gem 'simple_form'
 # gem 'docker-registry-api'
 gem 'docker-api', :require => 'docker'
 
+# user / authority(with rolify)
+gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'rolify', github: 'EppO/rolify'
+gem 'authority'
+
+# for File uploads
+gem 'carrierwave'
+gem 'rmagick', require: false
+gem 'fog'
+
+# deployment
+gem 'unicorn'
+
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
