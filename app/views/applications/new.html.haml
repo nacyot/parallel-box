@@ -4,7 +4,7 @@
     = link_to "Back to applicaitons", applications_url
     %i.fa.fa-undo
 
-%div.form.application_form.rounded_box{role: "form"}
+%div.form.application_form.rounded_box
   = simple_form_for(@app) do |f|
     = f.input :name, label: "Application Name", placeholder: "Parallal Box"
     = f.input :url, label: "Application URL", placeholder: "http://parallel-box.nacyot.com"
