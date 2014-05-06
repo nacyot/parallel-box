@@ -15,6 +15,3 @@ Parallel Box is self-hosted application deployment system based on Docker.
 ## Installation
 
 ## License
-
-=======
->>>>>>> bbcfad8fce6d8221763e21900024fd72d5a2c83f
