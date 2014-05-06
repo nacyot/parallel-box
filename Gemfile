@@ -34,6 +34,7 @@ gem "fog"
 
 # Deployment
 gem "unicorn"
+gem "foreman"
 
 # Thirdparty
 gem "coveralls", require: false
