@@ -16,8 +16,19 @@ class DockerContainersController < ApplicationController
   end
 
   def info
+    server = DockerServer.find(permitted_params[:docker_server_id])
+    container = server.box.get_container(permitted_params[:container_id])
+    @info = container.info
   end
 
   def logs
+    server = DockerServer.find(permitted_params[:docker_server_id])
+    container = server.box.get_container(permitted_params[:container_id])
+    @info = container.logs
+  end
+
+  private
+  def permitted_params
+    params.permit(:docker_server_id, :name, :tag, :container_id, :registry_host)
   end
 end

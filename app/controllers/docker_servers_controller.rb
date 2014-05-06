@@ -39,9 +39,6 @@ class DockerServersController < ApplicationController
     params.permit(:application_id)
   end
 
-  def permitted_params
-    params.permit(:docker_server_id, :name, :tag, :container_id, :registry_host)
-  end
 
 end
  

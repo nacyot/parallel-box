@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :docker_servers do
     get 'run' => 'docker_containers#run'
     get 'stop' => 'docker_containers#stop'
-    get 'log' => 'docker_containers#log'
+    get 'logs' => 'docker_containers#logs'
     get 'info' => 'docker_containers#info'
   end
 

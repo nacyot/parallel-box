@@ -10,4 +10,8 @@ module ApplicationsHelper
   def stop_container_link(server, container_id)
     link_to "stop", docker_server_stop_url(server, container_id: container_id)
   end
+
+  def info_container_link(server, container_id)
+    link_to "info", docker_server_info_url(server, container_id: container_id)
+  end
 end

@@ -18,6 +18,10 @@ class DockerContainerBox
     @container.info
   end
 
+  def logs
+    @container.attach(logs: true, stream: true, stdout: true, stderr: false, tty: false){|stream, chunk| "#{stream}: #{chunk}"}
+  end
+
   def name
     @container.info["Names"][0]
   end
