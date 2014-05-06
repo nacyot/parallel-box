@@ -7,4 +7,16 @@
       %li= link_to "Registries", docker_registries_url
     %ul.nav.navbar-nav.navbar-right
       %li= link_to "Sign in", new_user_session_url unless current_user
-      %li= link_to "Sign out", destroy_user_session_url, method: "delete" if current_user
+      - if current_user
+        %li.dropdown
+          %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+            = current_user.email
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %img.gravatar.img-circle{src: current_user.gravatar.image_url}
+            %li.divider
+            %li= link_to "My Applications", applications_url
+            %li= link_to "Configuration", "#"
+        %li= link_to "Sign out", destroy_user_session_url, method: "delete"
+

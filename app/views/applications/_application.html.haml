@@ -19,7 +19,7 @@
     %strong Members
     - app.users.each do |member|
       .member
-        %img.gravatar{src: member.gravatar.image_url}
+        %img.gravatar.img-circle{src: member.gravatar.image_url}
         = member.email
 
       

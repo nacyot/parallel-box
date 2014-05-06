@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   def index
-    @apps = Application.all
+    @apps = current_user.applications
   end
 
   def show
