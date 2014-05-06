@@ -11,6 +11,7 @@ class DockerServersController < ApplicationController
 
   def create
     if server = DockerServer.create(docker_servers_params.merge(application_id))
+      # server.create_activity(:create_docker_server, owner: current_user, recipient: server.application)
       redirect_to application_url(server.application)
     else
       redirect_to :back
@@ -21,9 +22,11 @@ class DockerServersController < ApplicationController
   end
 
   def update
+    # server.create_activity(:update_docker_server, owner: current_user, recipient: server.application)    
   end
 
   def destroy
+    # server.create_activity(:destroy_docker_server, owner: current_user, recipient: server.application)
   end
 
   def run_container
@@ -31,12 +34,14 @@ class DockerServersController < ApplicationController
     ports = [{cport: "3000", method: "tcp"}, {cport: "9000", method: "tcp"}]
     
     server.box.start(permitted_params[:registry_host], permitted_params[:name], permitted_params[:tag], ports)
+    server.create_activity(:run_container, owner: current_user, recipient: server.application)    
     redirect_to :back
   end
 
   def stop_container
     server = DockerServer.find(permitted_params[:docker_server_id])
     server.box.get_container(permitted_params[:container_id]).stop
+    server.create_activity(:stop_container, owner: current_user, recipient: server.application)    
     redirect_to :back
   end
 

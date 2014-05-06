@@ -14,6 +14,9 @@
 #
 
 class Application < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+  
   belongs_to :docker_registry
   has_many :docker_servers
   has_many :members
