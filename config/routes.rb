@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
+  get 'docker_containers/run'
+
+  get 'docker_containers/stop'
+
+  get 'docker_containers/info'
+
+  get 'docker_containers/logs'
+
   devise_for :users
   root 'main#index'
 
   resources :docker_registries
   resources :applications
   resources :docker_servers do
-    get 'run_container' => 'docker_servers#run_container'
-    get 'stop_container' => 'docker_servers#stop_container'
+    get 'run' => 'docker_containers#run'
+    get 'stop' => 'docker_containers#stop'
+    get 'log' => 'docker_containers#log'
+    get 'info' => 'docker_containers#info'
   end
+
+  
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

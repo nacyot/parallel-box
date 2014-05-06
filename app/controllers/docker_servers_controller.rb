@@ -29,22 +29,7 @@ class DockerServersController < ApplicationController
     # server.create_activity(:destroy_docker_server, owner: current_user, recipient: server.application)
   end
 
-  def run_container
-    server = DockerServer.find(permitted_params[:docker_server_id])
-    ports = [{cport: "3000", method: "tcp"}, {cport: "9000", method: "tcp"}]
-    
-    server.box.start(permitted_params[:registry_host], permitted_params[:name], permitted_params[:tag], ports)
-    server.create_activity(:run_container, owner: current_user, recipient: server.application)    
-    redirect_to :back
-  end
-
-  def stop_container
-    server = DockerServer.find(permitted_params[:docker_server_id])
-    server.box.get_container(permitted_params[:container_id]).stop
-    server.create_activity(:stop_container, owner: current_user, recipient: server.application)    
-    redirect_to :back
-  end
-
+  
   private
   def docker_servers_params
     params.require(:docker_server).permit(:name, :host, :port, :server_type, :description,)
