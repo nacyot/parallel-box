@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.1.1
+env:
+  global:
+    RAILS_ENV=test
+before_install:
+  - npm install -g bower
+  - bundle install    
+  - bower install
+# before_script:
+script: bundle exec rspec
+# after_success:

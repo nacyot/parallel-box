@@ -19,3 +19,6 @@
 .env
 .tern-port
 /vendor/*
+/.coveralls.yml
+/coverage/*
+
