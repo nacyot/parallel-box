@@ -30,3 +30,5 @@
         = run_container_link(server, app, tag[:image_tag]) if tag[:containers].empty?
         - tag[:containers].each do |container|
           = stop_container_link(server, container.short_id)
+          = info_container_link(server, container.short_id)
+          = logs_container_link(server, container.short_id)

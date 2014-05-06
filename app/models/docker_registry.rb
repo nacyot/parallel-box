@@ -12,6 +12,9 @@
 #
 
 class DockerRegistry < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+  
   has_many :applications
 
   def box(app)

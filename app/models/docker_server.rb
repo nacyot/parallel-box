@@ -14,6 +14,9 @@
 #
 
 class DockerServer < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+  
   belongs_to :application
 
   def box

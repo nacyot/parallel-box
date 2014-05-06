@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   def index
-    @apps = Application.all
+    @apps = current_user.applications
   end
 
   def show
@@ -15,7 +15,8 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    if Application.create(application_params)
+    if app = Application.create(application_params)
+      app.create_activity(:create_application, owner: current_user, recipient: app)
       redirect_to applications_url
     else
       redirect_to :back
@@ -24,12 +25,14 @@ class ApplicationsController < ApplicationController
 
   def edit
     @app = Application.find(params[:id])
+    # app.create_activity(:edit_application, owner: current_user, recipient: app)
   end
 
   def update
   end
 
   def destroy
+    # app.create_activity(:destroy_application, owner: current_user, recipient: app)
   end
 
   private
