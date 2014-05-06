@@ -14,6 +14,7 @@ gem "haml"
 # View
 gem "simple_form"
 gem "gravatar-ultimate"
+gem "public_activity"
 
 # Docker
 # gem "docker-registry-api"
