@@ -12,6 +12,7 @@
     .user 
       %i.fa.fa-user
       = link_to "nacyot", "#"
+      %img.gravatar{src: User.find(1).gravatar.image_url}
 
   .event.rounded_box
     .time 

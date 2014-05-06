@@ -11,7 +11,15 @@
     = link_to app.docker_registry.name, docker_registry_url(app.docker_registry)
   .repository
     %strong Repository :
-  .c
+  .ci
     %strong CI :
   .stages
     %strong Stage Containers
+  .members
+    %strong Members
+    - app.users.each do |member|
+      .member
+        %img.gravatar{src: member.gravatar.image_url}
+        = member.email
+
+      

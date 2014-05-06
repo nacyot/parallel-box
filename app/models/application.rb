@@ -16,4 +16,6 @@
 class Application < ActiveRecord::Base
   belongs_to :docker_registry
   has_many :docker_servers
+  has_many :members
+  has_many :users, through: :members
 end
