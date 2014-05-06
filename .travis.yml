@@ -5,6 +5,7 @@ env:
   global:
     RAILS_ENV=test
 before_install:
+  - npm install -g bower
   - bundle install    
   - bower install
 # before_script:
