@@ -133,7 +133,9 @@ GEM
     fog-json (1.0.0)
       multi_json (~> 1.0)
     formatador (0.2.4)
-    gravatar (1.0)
+    gravatar-ultimate (2.0.0)
+      activesupport (>= 2.3.14)
+      rack
     guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -332,7 +334,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   faker (~> 1.1.2)
   fog
-  gravatar
+  gravatar-ultimate
   guard (~> 2)
   guard-rspec
   haml

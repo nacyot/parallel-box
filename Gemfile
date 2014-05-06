@@ -13,7 +13,7 @@ gem "haml"
 
 # View
 gem "simple_form"
-gem "gravatar"
+gem "gravatar-ultimate"
 
 # Docker
 # gem "docker-registry-api"
